@@ -56,8 +56,7 @@ export default class GameController {
 
 	createStartingPosition() {
 		const teamPlayer = this.createTeam(this.gamePlay.charactersForPlayer, this.gamePlay.maxStartLvl, this.gamePlay.countCharacterTeam);
-		const teamPC = this.createTeam(this.gamePlay.charactersForPC, this.gamePlay.maxStartLvl, this.gamePlay.countCharacterTeam);
-
+		const teamPC = this.createTeam(this.gamePlay.charactersForPC, 1, 1);
 		const positiongTeamPlayer = this.calcPositioningTeam(0, this.gamePlay.fieldSize, this.gamePlay.boardSize, teamPlayer);
 		const positiongTeamPC = this.calcPositioningTeam(this.gamePlay.firstCellForPC, this.gamePlay.fieldSize, this.gamePlay.boardSize, teamPC);
 		const teams = this.mergeTeams(positiongTeamPlayer, positiongTeamPC);
@@ -424,24 +423,23 @@ export default class GameController {
 
 	startNewLvl() {
 		this.addItemForHistoryPoints()
-		const countThemes = this.gamePlay.themes.length;
-		const indexThemes = (this.gameState.playerLvl % countThemes) - 1;
-		
+				
 		const maxLvl = this.gamePlay.maxStartLvl + (this.gameState.playerLvl - 1)
 		
 		const charactersTeamPC = generateTeam(this.gamePlay.charactersForPC, maxLvl, this.gamePlay.countCharacterTeam);
+
 		const charactersTeamPlayer = upTeamLvl(this.gameState.teams.teamPlayer);
 		const teamPC = this.calcPositioningTeam(this.gamePlay.firstCellForPC, this.gamePlay.fieldSize, this.gamePlay.boardSize, charactersTeamPC);
+		console.log(charactersTeamPlayer, charactersTeamPC)
 		const teamPlayer = this.calcPositioningTeam(0, this.gamePlay.fieldSize, this.gamePlay.boardSize, charactersTeamPlayer);
-
 		this.gameState.teams = {
 			teamPC,
 			teamPlayer
 		};
 
 		this.gameState.activeMove = "newLvl";
-		this.positioning(this.gameState.teams)
-		this.gamePlay.drawUi(this.gamePlay.themes[indexThemes]);
+		this.gamePlay.drawUi(this.selectTheme());
+		this.positioning(this.gameState.teams);
 		this.gamePlay.showMaxPoints(this.gameState.historyPoints[0]);
 		this.gamePlay.showCurrentPoints(this.gameState.points);
 
@@ -497,6 +495,8 @@ export default class GameController {
 			this.gamePlay.clearCellsForAttack();
 		}
 		this.gameState.points = 0;
+		this.gameState.activeMove = "player";
+  this.gameState.playerLvl = 1;
 		this.gamePlay.showCurrentPoints(0);
 
 		this.addItemForHistoryPoints();
@@ -516,6 +516,8 @@ export default class GameController {
 			this.gamePlay.addCellClickListener(this.onCellClick.bind(this));
 		}
 
+		this.gamePlay.drawUi(this.selectTheme());
+
 		this.createStartingPosition();		
 	}
 
@@ -526,6 +528,7 @@ export default class GameController {
 	}
 
 	onLoadGame() {
+		console.log(this)
 		this.gamePlay.clearCellsForMove();
 		this.gamePlay.clearCellsForAttack();
 
@@ -561,6 +564,8 @@ export default class GameController {
 			this.gamePlay.addCellClickListener(this.onCellClick.bind(this));
 		}
 
+		this.gamePlay.drawUi(this.selectTheme());
+
 		this.positioning(this.gameState.teams)
 
 		if(this.gameState.activeCharacter) {
@@ -572,12 +577,19 @@ export default class GameController {
 		}
 	}
 
+	selectTheme() {
+		const countThemes = this.gamePlay.themes.length;
+		const indexThemes = (this.gameState.playerLvl - 1) % countThemes;
+		const activeTheme = this.gamePlay.themes[indexThemes];
+		return activeTheme;
+	}
+
 	resetGameState() {
 		this.gameState.clearGameState();
 		this.gameState.activeMove = "player";
 		this.gameState.playerLvl = 1;
-  	this.gameState.points = 0;
- 		this.gameState.teams = null;
+  this.gameState.points = 0;
+ 	this.gameState.teams = null;
  }
 
 
