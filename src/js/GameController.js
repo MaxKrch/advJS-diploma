@@ -56,7 +56,7 @@ export default class GameController {
 
 	createStartingPosition() {
 		const teamPlayer = this.createTeam(this.gamePlay.charactersForPlayer, this.gamePlay.maxStartLvl, this.gamePlay.countCharacterTeam);
-		const teamPC = this.createTeam(this.gamePlay.charactersForPC, 1, 1);
+		const teamPC = this.createTeam(this.gamePlay.charactersForPC, this.gamePlay.maxStartLvl, this.gamePlay.countCharacterTeam);
 		const positiongTeamPlayer = this.calcPositioningTeam(0, this.gamePlay.fieldSize, this.gamePlay.boardSize, teamPlayer);
 		const positiongTeamPC = this.calcPositioningTeam(this.gamePlay.firstCellForPC, this.gamePlay.fieldSize, this.gamePlay.boardSize, teamPC);
 		const teams = this.mergeTeams(positiongTeamPlayer, positiongTeamPC);
