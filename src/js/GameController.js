@@ -486,9 +486,12 @@ export default class GameController {
 	}
 
 	onNewGame()	{
-		this.gamePlay.clearCellsForMove();
-		this.gamePlay.clearCellsForAttack();
-		
+		if(this.gameState.activeCharacter) {
+			this.gamePlay.deselectCell(this.gameState.activeCharacter.position);
+			this.gameState.clearGameState();
+			this.gamePlay.clearCellsForMove();
+			this.gamePlay.clearCellsForAttack();
+		}
 		this.gameState.points = 0;
 		this.gamePlay.showCurrentPoints(0);
 
