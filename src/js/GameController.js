@@ -486,6 +486,9 @@ export default class GameController {
 	}
 
 	onNewGame()	{
+		this.gamePlay.clearCellsForMove();
+		this.gamePlay.clearCellsForAttack();
+		
 		this.gameState.points = 0;
 		this.gamePlay.showCurrentPoints(0);
 
@@ -516,6 +519,9 @@ export default class GameController {
 	}
 
 	onLoadGame() {
+		this.gamePlay.clearCellsForMove();
+		this.gamePlay.clearCellsForAttack();
+
 		const state = this.stateService.load();
 
 		if(state instanceof Error) {
