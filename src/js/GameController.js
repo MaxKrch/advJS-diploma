@@ -567,6 +567,8 @@ export default class GameController {
 		this.gamePlay.drawUi(this.selectTheme());
 
 		this.positioning(this.gameState.teams)
+		this.gamePlay.showMaxPoints(this.gameState.historyPoints[0]);
+		this.gamePlay.showCurrentPoints(this.gameState.points);
 
 		if(this.gameState.activeCharacter) {
 			this.onCellClick(this.gameState.activeCharacter.position)
