@@ -423,6 +423,7 @@ export default class GameController {
 	}
 
 	startNewLvl() {
+		this.addItemForHistoryPoints()
 		const countThemes = this.gamePlay.themes.length;
 		const indexThemes = (this.gameState.playerLvl % countThemes) - 1;
 		
@@ -441,6 +442,9 @@ export default class GameController {
 		this.gameState.activeMove = "newLvl";
 		this.positioning(this.gameState.teams)
 		this.gamePlay.drawUi(this.gamePlay.themes[indexThemes]);
+		this.gamePlay.showMaxPoints(this.gameState.historyPoints[0]);
+		this.gamePlay.showCurrentPoints(this.gameState.points);
+
 	}
 
 	gameOver() {

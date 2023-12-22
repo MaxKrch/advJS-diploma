@@ -42,7 +42,7 @@ export default class GamePlay {
       </div>
       <div class="points">
         <div data-id="points-current" class="points-pole">
-          <span class="points-pole-descrip">Текущие очки: </span>
+          <span class="points-pole-descrip">Набрано очков: </span>
           <span data-id="points-current-value" class="points-pole-value"></span>
         </div>
         <div data-id="points-max" class="points-pole">
@@ -221,7 +221,7 @@ export default class GamePlay {
 
       setTimeout(() => {
         resolve(messWrap.classList.add('hidden-item'));
-      }, 1000)
+      }, 3000)
     })
   }
 
