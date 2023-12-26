@@ -1,109 +1,78 @@
-import { calcTileType } from "../utils.js";
+import { calcTileType } from '../utils';
 
-test("arg dont number", () => {
-
+test('arg dont number', () => {
 	const received = () => calcTileType('5', '');
-	const expected = new Error("Указано не число!");
+	const expected = new Error('Указано не число!');
 
-	expect(received).toThrow(expected)
-})	
+	expect(received).toThrow(expected);
+});
 
-test("uncorrect index (big)", () => {
-
+test('uncorrect index (big)', () => {
 	const received = () => calcTileType(20, 4);
-	const expected = new Error("Неверный индекс");
+	const expected = new Error('Неверный индекс');
 
-	expect(received).toThrow(expected)
-})	
+	expect(received).toThrow(expected);
+});
 
-
-
-
-test("return top-left", () => {
-
+test('return top-left', () => {
 	const received = calcTileType(0, 4);
-	const expected = 'top-left'
+	const expected = 'top-left';
 
 	expect(received).toBe(expected);
-})
+});
 
-
-
-test("return top-right", () => {
-
+test('return top-right', () => {
 	const received = calcTileType(3, 4);
-	const expected = 'top-right'
+	const expected = 'top-right';
 
 	expect(received).toBe(expected);
-})
+});
 
-
-
-test("return bottom-right", () => {
-
+test('return bottom-right', () => {
 	const received = calcTileType(24, 5);
-	const expected = 'bottom-right'
+	const expected = 'bottom-right';
 
 	expect(received).toBe(expected);
-})
+});
 
-
-test("return bottom-left", () => {
-
+test('return bottom-left', () => {
 	const received = calcTileType(20, 5);
-	const expected = 'bottom-left'
+	const expected = 'bottom-left';
 
 	expect(received).toBe(expected);
-})
+});
 
-
-
-test("return top", () => {
-
+test('return top', () => {
 	const received = calcTileType(2, 5);
-	const expected = 'top'
+	const expected = 'top';
 
 	expect(received).toBe(expected);
-})
+});
 
-
-
-test("return right", () => {
-
+test('return right', () => {
 	const received = calcTileType(9, 5);
-	const expected = 'right'
+	const expected = 'right';
 
 	expect(received).toBe(expected);
-})
+});
 
-
-
-test("return bottom", () => {
-
+test('return bottom', () => {
 	const received = calcTileType(23, 5);
-	const expected = 'bottom'
+	const expected = 'bottom';
 
 	expect(received).toBe(expected);
-})
+});
 
-
-
-test("return left", () => {
-
+test('return left', () => {
 	const received = calcTileType(15, 5);
-	const expected = 'left'
+	const expected = 'left';
 
 	expect(received).toBe(expected);
-})
+});
 
-
-
-test("return center", () => {
-
+test('return center', () => {
 	const received = calcTileType(17, 5);
-	const expected = 'center'
+	const expected = 'center';
 
 	expect(received).toBe(expected);
-})
-
-
+});

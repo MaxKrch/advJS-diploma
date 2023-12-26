@@ -1,17 +1,16 @@
 const themes = {
-  prairie: 'prairie',
-  desert: 'desert',
-  arctic: 'arctic',
-  mountain: 'mountain',
+	prairie: 'prairie',
+	desert: 'desert',
+	arctic: 'arctic',
+	mountain: 'mountain',
 };
 
 const arrayThemes = {};
 let i = 1;
 
-for (let value of Object.values(themes)) {
+for (const value of Object.values(themes)) {
 	arrayThemes[`Level ${i}`] = value;
-	i++; 
+	i += 1;
 }
-
 
 export default themes;
