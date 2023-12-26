@@ -2,7 +2,6 @@
 
 # Дипломное задание к курсу «Продвинутый JavaScript». Retro Game
 
-###### tags: `netology` `advanced js`
 
 ## Предыстория
 
