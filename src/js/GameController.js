@@ -577,6 +577,8 @@ export default class GameController {
 		this.gameState.activeMove = 'player';
 		this.gameState.playerLvl = 1;
 		this.gameState.points = 0;
+		this.gamePlay.showMaxPoints(this.gameState.historyPoints[0]);
+		this.gamePlay.showCurrentPoints(0);
 		this.gameState.teams = null;
 	}
 }
